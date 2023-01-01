@@ -13,7 +13,7 @@ typedef struct {
 extern "C" {
 #endif
 
-  extern RingBuffer *init_buffer(RingBuffer* pBuf);
+  extern void init_buffer(RingBuffer* pBuf);
   extern bool add_to_buffer(RingBuffer* pBuf, uint8_t c);
   extern bool remove_from_buffer(RingBuffer* pBuf, uint8_t *pc);
 

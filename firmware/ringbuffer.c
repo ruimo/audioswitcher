@@ -7,7 +7,7 @@
 
 #include "ringbuffer.h"
 
-RingBuffer *init_buffer(RingBuffer* pBuf) {
+void init_buffer(RingBuffer* pBuf) {
   pBuf->start_idx = 0;
   pBuf->len = 0;
 }
