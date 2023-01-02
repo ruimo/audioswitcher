@@ -13,10 +13,10 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# 後は普通のcmakeプロジェクトと同様にテストのソースを追加していけばいいです
 add_executable(
   test_main
   firmware/ringbuffer.c
+  firmware/state.c
   all_test.cc
 )
 target_link_libraries(

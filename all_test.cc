@@ -1,6 +1,18 @@
 #include <gtest/gtest.h>
 #include "firmware/ringbuffer.h"
+#include "firmware/device.h"
 
+extern "C" {
+  void turn_on_relay(Coil coil, bool on) {
+  }
+
+  ButtonPressed button_pressed(void) {
+    return NoButtonPressed;
+  }
+
+  void turn_on_led(Led led, bool on) {
+  }
+}
 
 TEST(TestCalc, init_buffer) {
   RingBuffer buf;

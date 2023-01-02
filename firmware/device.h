@@ -1,4 +1,3 @@
-#include <xc.h>
 #include <stdbool.h> 
 
 #ifdef __cplusplus
@@ -11,9 +10,17 @@ extern "C" {
 
   void turn_on_relay(Coil coil, bool on);
 
-  bool in_0_pressed(void);
+  typedef enum {
+    NoButtonPressed, In0Pressed, In1Pressed, BothPressed,
+  } ButtonPressed;
 
-  bool in_1_pressed(void);
+  ButtonPressed button_pressed(void);
+
+  typedef enum {
+    Led0, Led1,
+  } Led;
+
+  void turn_on_led(Led led, bool on);
 
 #ifdef __cplusplus
 }

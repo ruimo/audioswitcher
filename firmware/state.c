@@ -12,17 +12,13 @@ struct {
     StateId id;
     union {
         struct {
-        } Init;
-
-        struct {
             uint16_t relay_wait;
         } In;
     } StateData;
-} State;
-
-void init_state(void) {
-    State.id = Init;
-}
+} State = {
+    Init,
+    {},
+};
 
 void on_init_state(void) {
     enter_in_0();
@@ -43,14 +39,42 @@ void enter_in_1(void) {
 }
 
 void on_in_0(void) {
-  if (in_1_pressed()) {
+  switch (button_pressed()) {
+  case BothPressed:
+    /* TODO */
+    break;
+
+  case In1Pressed:
     enter_in_1();
-  } else {
+    break;
+
+  default:
     if (State.StateData.In.relay_wait != 0) {
       --State.StateData.In.relay_wait;
     } else {
       turn_on_relay(Coil0, false);
     }
+    break;
+  }
+}
+
+void on_in_1(void) {
+  switch (button_pressed()) {
+  case BothPressed:
+    /* TODO */
+    break;
+
+  case In0Pressed:
+    enter_in_0();
+    break;
+
+  default:
+    if (State.StateData.In.relay_wait != 0) {
+      --State.StateData.In.relay_wait;
+    } else {
+      turn_on_relay(Coil1, false);
+    }
+    break;
   }
 }
 
@@ -65,22 +89,10 @@ void tick_switch(int32_t i) {
             break;
 
         case In1:
+            on_in_1();
             break;
             
         default:
             break;
     }
-    
-    
-//    PORTBbits_t portb = PORTBbits;
-//    if (portb.RB7 == 0) {
-//        LATBbits.LATB5 = 1;
-//        LATBbits.LATB3 = 0;
-//    } else if (portb.RB6 == 0) {
-//        LATBbits.LATB5 = 0;
-//        LATBbits.LATB3 = 1;
-//    } else {
-//        LATBbits.LATB5 = 0;
-//        LATBbits.LATB3 = 0;
-//    }
 }

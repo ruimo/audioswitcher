@@ -31,7 +31,6 @@ void main(void) {
     PORTB = 0xff; // Reset PORTB
     LATB = 0;
     ADCON1 = 0xff;                 // All Digital
-    init_state();
     
     for (int32_t i = 0; i < 100000; ++i) {
         tick(i);
