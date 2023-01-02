@@ -1,9 +1,30 @@
+#include <vector>
 #include <gtest/gtest.h>
 #include "firmware/ringbuffer.h"
 #include "firmware/device.h"
 
+typedef struct {
+  Coil coil;
+  bool on;
+} TurnOnRelayCall;
+
+static std::vector<TurnOnRelayCall> turn_on_relay_calls;
+
+static std::vector<ButtonPressed> button_pressed_returns;
+
+typedef struct {
+  Led led;
+  bool on;
+} TurnOnLedCall;
+
+static std::vector<TurnOnLedCall> turn_on_led_calls;
+
 extern "C" {
   void turn_on_relay(Coil coil, bool on) {
+    TurnOnRelayCall call = {
+      coil, on,
+    };
+    turn_on_relay_calls.push_back(call);
   }
 
   ButtonPressed button_pressed(void) {
@@ -11,6 +32,10 @@ extern "C" {
   }
 
   void turn_on_led(Led led, bool on) {
+    TurnOnLedCall call = {
+      led, on,
+    };
+    turn_on_led_calls.push_back(call);
   }
 }
 
