@@ -1,4 +1,5 @@
 #include <stdbool.h> 
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -21,6 +22,18 @@ extern "C" {
   } Led;
 
   void turn_on_led(Led led, bool on);
+
+  bool uart_tx_ready(void);
+
+  void uart_tx(unsigned char c);
+
+  typedef enum {
+    Ad0, Ad1,
+  } AdPort;
+
+  void start_ad(AdPort port);
+
+  bool get_ad(uint16_t *pValue);
 
 #ifdef __cplusplus
 }

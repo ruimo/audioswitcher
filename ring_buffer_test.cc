@@ -1,52 +1,14 @@
-#include <vector>
 #include <gtest/gtest.h>
 #include "firmware/ringbuffer.h"
-#include "firmware/device.h"
 
-typedef struct {
-  Coil coil;
-  bool on;
-} TurnOnRelayCall;
-
-static std::vector<TurnOnRelayCall> turn_on_relay_calls;
-
-static std::vector<ButtonPressed> button_pressed_returns;
-
-typedef struct {
-  Led led;
-  bool on;
-} TurnOnLedCall;
-
-static std::vector<TurnOnLedCall> turn_on_led_calls;
-
-extern "C" {
-  void turn_on_relay(Coil coil, bool on) {
-    TurnOnRelayCall call = {
-      coil, on,
-    };
-    turn_on_relay_calls.push_back(call);
-  }
-
-  ButtonPressed button_pressed(void) {
-    return NoButtonPressed;
-  }
-
-  void turn_on_led(Led led, bool on) {
-    TurnOnLedCall call = {
-      led, on,
-    };
-    turn_on_led_calls.push_back(call);
-  }
-}
-
-TEST(TestCalc, init_buffer) {
+TEST(TestRingBuffer, init_buffer) {
   RingBuffer buf;
   init_buffer(&buf);
   EXPECT_EQ(buf.start_idx,  0);
   EXPECT_EQ(buf.len,  0);
 }
 
-TEST(TestCalc, add_buffer) {
+TEST(TestRingBuffer, add_buffer) {
   RingBuffer buf;
   init_buffer(&buf);
 
@@ -55,7 +17,7 @@ TEST(TestCalc, add_buffer) {
   EXPECT_EQ(buf.len,  1);
 }
 
-TEST(TestCalc, add_buffer_full) {
+TEST(TestRingBuffer, add_buffer_full) {
   RingBuffer buf;
   init_buffer(&buf);
 
@@ -68,7 +30,7 @@ TEST(TestCalc, add_buffer_full) {
   EXPECT_EQ(buf.len,  RING_BUFFER_SIZE);
 }
 
-TEST(TestCalc, add_buffer_rotate) {
+TEST(TestRingBuffer, add_buffer_rotate) {
   RingBuffer buf;
   init_buffer(&buf);
 
@@ -96,7 +58,7 @@ TEST(TestCalc, add_buffer_rotate) {
   EXPECT_EQ(buf.len,  RING_BUFFER_SIZE);
 }
 
-TEST(TestCalc, remove_buffer_rotate) {
+TEST(TestRingBuffer, remove_buffer_rotate) {
   RingBuffer buf;
   init_buffer(&buf);
 

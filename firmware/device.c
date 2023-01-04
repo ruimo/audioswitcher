@@ -37,3 +37,34 @@ void turn_on_led(Led led, bool on) {
     break; 
   }
 }
+
+bool uart_tx_ready(void) {
+  return TXSTAbits.TRMT == 1;
+}
+
+void uart_tx(unsigned char c) {
+  TXREG = c;
+}
+
+void start_ad(AdPort port) {
+  switch (port) {
+  case Ad0:
+    ADCON0bits.CHS = 0;
+    break;
+
+  case Ad1:
+    ADCON0bits.CHS = 1;
+    break;
+  }
+
+  ADCON0bits.GO_nDONE = 1;
+}
+
+bool get_ad(uint16_t *pValue) {
+  if (ADCON0bits.GO_nDONE != 0) {
+    return false;
+  } else {
+    *pValue = ADRES;
+    return true;
+  }
+}

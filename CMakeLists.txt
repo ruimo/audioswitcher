@@ -16,8 +16,13 @@ FetchContent_MakeAvailable(googletest)
 add_executable(
   test_main
   firmware/ringbuffer.c
-  firmware/state.c
-  all_test.cc
+  firmware/switch_state.c
+  firmware/uart_state.c
+  firmware/ad_state.c
+  ring_buffer_test.cc
+  switch_state_test.cc
+  uart_state_test.cc
+  ad_state_test.cc
 )
 target_link_libraries(
   test_main
