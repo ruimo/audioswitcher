@@ -1,0 +1,8 @@
+{
+    "context": "..",
+    "dockerFile": "Dockerfile",
+    "mounts": [
+        "source=mkdocs-test,target=/workspace,type=volume"
+    ],
+    "workspaceFolder": "/workspace"
+}
