@@ -6,7 +6,7 @@
     ],
     "workspaceFolder": "/workspace",
     "forwardPorts": [8765],
-    "extentions": [
+    "extensions": [
         "eightHundreds.vscode-drawio"
     ]
 }
