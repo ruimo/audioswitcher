@@ -1,4 +1,7 @@
 site_name: audio switcher
 dev_addr: "localhost:8765"
+language: ja
 theme:
-  name: slate
+  name: material
+  palette:
+    scheme: slate
