@@ -66,7 +66,7 @@ HDMI切り替え機の多くは、自動切り替え機能を持っており、�
 
 全体の回路図はこちら。
 
-[回路図](https://github.com/ruimo/audioswitcher/blob/main/schematics.kicad_sch)
+[回路図(KiCad)](https://github.com/ruimo/audioswitcher/blob/main/schematics.kicad_sch)
 
 ## ソースコード
 
