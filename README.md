@@ -1,5 +1,7 @@
 # audioswitcher
 
+[Docs](https://ruimo.github.io/audioswitcher/)
+
 # Unit test
 
 ./test.sh
