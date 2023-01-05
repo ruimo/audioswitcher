@@ -4,5 +4,6 @@
     "mounts": [
         "source=mkdocs-test,target=/workspace,type=volume"
     ],
-    "workspaceFolder": "/workspace"
+    "workspaceFolder": "/workspace",
+    "forwardPorts": [8765]
 }
