@@ -62,10 +62,14 @@ HDMI切り替え機の多くは、自動切り替え機能を持っており、�
 
 デバイス制御の部分を切り出してあるので、PC側でGoogleTestを使って自動テストしています。各ステートマシンの挙動の確認、リングバッファの動作の確認をしています。テストコードのビルドにはcmakeを使用しました([CMakeLists.txtはこちら](https://github.com/ruimo/audioswitcher/blob/main/CMakeLists.txt))。
 
+## 全体の回路図
+
+全体の回路図はこちら。
+
+[回路図](https://github.com/ruimo/audioswitcher/blob/main/schematics.kicad_sch)
+
 ## ソースコード
 
 全体のソースコードはこちら。
 
 [Source Repository](https://github.com/ruimo/audioswitcher)
-
-
